@@ -7,19 +7,17 @@ import { WeatherService } from './weather.service';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <h1>Weather App</h1>
-    <button (click)="getWeather()">Get Weather</button>
-    <div *ngIf="weatherData">
-      <p>Temperature: {{ weatherData.main.temp }}</p>
-      <p>Description: {{ weatherData.weather[0].description }}</p>
-    </div>
-  `,
-  imports: [ CommonModule, RouterOutlet ],
-  standalone: true
+  templateUrl: './app.component.html',
 })
 export class AppComponent {
-  weatherData: any;
+  weatherData?: any;
+
+  city!: string;
+  units: string = "imperial";
+  temperature?: number;
+  humidity?: number;
+  pressure?: number;
+  state!: string;
 
   constructor(private weatherService: WeatherService) {}
 
