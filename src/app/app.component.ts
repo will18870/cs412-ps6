@@ -12,7 +12,8 @@ import { WeatherService } from './weather.service';
 export class AppComponent {
   weatherData?: any;
 
-  city!: string;
+  realWeather?: string = "who knows";
+  city: string = "boston";
   units: string = "imperial";
   temperature?: number;
   humidity?: number;
@@ -22,8 +23,11 @@ export class AppComponent {
   constructor(private weatherService: WeatherService) {}
 
   getWeather() {
-    this.weatherService.getWeather('Boston').subscribe((data) => {
-      this.weatherData = data;
+    this.weatherService.getWeather(this.city).subscribe((data) => {
+      this.temperature = data.main.temp;
+      this.humidity = data.main.humidity;
+      this.pressure = data.main.pressure;
+      this.realWeather = data.weather[0].main;
     });
   }
 }
