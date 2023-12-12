@@ -3,13 +3,17 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { FormComponent } from './form.component';
+import { ResultComponent } from './result.component';
 import { WeatherService } from './weather.service';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        FormComponent,
+        ResultComponent
     ],
     imports: [
         BrowserModule,
