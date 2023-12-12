@@ -24,7 +24,7 @@ export class AppComponent {
   constructor(private weatherService: WeatherService) {}
 
   getWeather() {
-    this.weatherService.getWeather('CITY_NAME').subscribe((data) => {
+    this.weatherService.getWeather('Boston').subscribe((data) => {
       this.weatherData = data;
     });
   }
