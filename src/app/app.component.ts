@@ -3,6 +3,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import {OpWeService} from "./services/opwe.service";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -11,26 +14,22 @@ import { RouterOutlet } from '@angular/router';
   standalone: true
 })
 export class AppComponent {
-  title = 'ps6';
-  weatherData: any; // data var
-  exists: boolean = false; // does data exist?
 
-  constructor() {}
+  temperature?: number;
+  humidity?: number;
+  pressure?: number;
 
-  fetchData() {
-    console.log("test!");
+  constructor(private OpWe: OpWeService) {
 
-    // "fetching" my api data (from a local file)
-    fetch('../assets/apiData.json')
-        .then(response => response.json())
-        .then(jsonData => {
-          this.weatherData = jsonData;
-          this.exists = true;
-        })
-        .catch(error => console.error('you are a fool:', error));
   }
-
-  doThing() {
-    console.log("DO SOMETHING FOR THE LOVE OF GOD!");
+  async getWeather() {
+    try {
+      const response = await this.OpWe.getCurrentWeather(42.4, -71.0);
+      this.temperature = response.current.temp;
+      this.humidity = response.current.humidity;
+      this.pressure = response.current.pressure;
+    } catch (error) {
+      console.error('Error fetching weather:', error);
+    }
   }
 }

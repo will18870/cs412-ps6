@@ -7,7 +7,7 @@ import {config as API} from '../config/openweather'
 @Injectable({
     providedIn: 'root'
 })
-export class WxServiceService {
+export class OpWeService {
 
     baseURL: string = API.baseURL
 

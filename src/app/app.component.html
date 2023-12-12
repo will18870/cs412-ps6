@@ -1,32 +1,24 @@
-<!-- William Huang - U53888747 -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Way 1</title>
 </head>
 <body>
-<div>
-    <h1>ps6: simulate fetching data via angular</h1>
-    <p>disclaimer: the api data is just in a local json file being fetched.</p>
+<br/>
+Way 1: use ngModel to bind variables, then call a function from Submit button
+<form (ngSubmit)="getCurrentWeather()">
+    City: <input name="lat" [(ngModel)]="lat">
+    State: <input name="lon" [(ngModel)]="lon">
+    <button type="submit">Submit</button>
 
-    <!-- button to "fetch" weather data -->
-    <button (click)="fetchData()">Fetch Data</button>
+</form>
 
-    <!-- button i made to debug when i was very frustrated -->
-    <!-- (the error turned out to be having SSR on. chrome did not like that.) -->
-    <button (click)="doThing()">DO SOMETHING FOR THE LOVE OF GOD</button>
-
-    <!-- display data only if it exists (*ngIf) -->
-    <div *ngIf="exists">
-        <h2>Data from Local JSON File:</h2>
-
-        <!-- iterate through the data (*ngFor) -->
-        <div *ngFor="let item of weatherData | keyvalue">
-            <p>{{ item.key }}: {{ item.value }}</p>
-        </div>
-    </div>
-</div>
+<br/>
+Current weather: <br/>
+Temp: {{temperature | number:'2.1'}}
+Pressure: {{pressure | number: '4.1'}}
+Humidity : {{humidity}}%
+<hr/>
 </body>
 </html>
